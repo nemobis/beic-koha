@@ -2,6 +2,6 @@
 - hosts: koha
   gather_facts: yes
   remote_user: root
-  sudo: true
+  #sudo: true
   roles:
-    - { role: ansible-koha, when: "ansible_os_family == 'Fedora'" }
+    - { role: ansible-koha, when: "ansible_os_family == 'RedHat'" }

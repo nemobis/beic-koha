@@ -43,8 +43,7 @@
     - perl-Unix-Syslog
     - perl-YAML
 
-- name: Install Koha
-  apt: name=koha-common update_cache=yes
+# TODO: install Koha
 
 - name: Install MySQL Server locally
   include: mysql.yml
