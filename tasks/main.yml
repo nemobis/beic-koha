@@ -1,0 +1,23 @@
+---
+
+#The following tasks are based on the instructions found at the following URLs:
+#1) http://wiki.koha-community.org/wiki/Koha_on_Debian
+#2) http://wiki.koha-community.org/wiki/Talk:Koha_on_Debian
+
+- name: Download apt repository signing key
+  apt_key: url=http://debian.koha-community.org/koha/gpg.asc state=present
+
+- name: Add apt repository
+  copy: src=koha.list dest=/etc/apt/sources.list.d/koha.list
+
+- name: Install Koha
+  apt: name=koha-common update_cache=yes
+
+- name: Install MySQL Server locally
+  include: mysql.yml
+  #FIXME: Control this task using a variable, as some might use
+  #remote MySQL servers
+
+- name: Configure Apache
+  include: apache.yml
+

@@ -1,0 +1,18 @@
+---
+
+#FIXME: You should only pre-seed MySQL packages IF MySQL server isn't already installed && if they want to install it
+- name: Install debconf-utils for pre-seeding Debian MySQL package
+  apt: name=debconf-utils
+
+#NOTE: The mysql_passwd_seed variable can be defined at any level
+#For instance, you could define it using the the --extra-vars flag at run-time (e.g. "--extra-vars "@extra_vars.yml")
+- name: Pre-seed MySQL root password
+  debconf: name=mysql-server-5.5 question={{ item }} value={{ mysql_passwd_seed }} vtype='password'
+  with_items:
+    - 'mysql-server/root_password'
+    - 'mysql-server/root_password_again'
+
+#FIXME: The pre-seeded answers will only work for mysql-server-5.5...
+- name: Install MySQL server
+  apt: name=mysql-server state=present
+
