@@ -114,22 +114,25 @@
     - Net::Z3950::ZOOM
     - open # Module 'open' is not installed ! Bailing out the installation for Text-Bidi-2.11.
     - OpenOffice::OODoc
+    # TODO: duplicates the package above?
     - CHROMATIC/PDF-API2-Simple-1.1.5.tar.gz # https://rt.cpan.org/Public/Bug/Display.html?id=28125#txn-1303659
     - PDF::Reuse::Barcode
     - PDF::Table
     - Schedule::At
     - Template::Plugin::HtmlToText
     - Template::Plugin::JSON::Escape
-    - Text::Bidi # TODO: Still fails
+    # - Text::Bidi # TODO: Still fails
     - Text::CSV::Encoded
     - Text::Unaccent
     - UUID
 
 # TODO: install Koha
 
-- name: Install MySQL Server locally
-  include: mysql.yml
-
 - name: Configure Apache
   include: apache.yml
+
+# TODO: other firewall rules http://wiki.koha-community.org/wiki/Koha_3.10_on_Centos_6.3_x86_64_en#.C4.B0ptables_rules
+
+- name: Install MySQL Server locally
+  include: mysql.yml
 

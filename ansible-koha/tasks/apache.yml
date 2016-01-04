@@ -1,13 +1,19 @@
 ---
-- name: Install the latest version of apache2
-  dnf: name=httpd state=latest
-
-- name: Enable required Apache modules
-  apache2_module: name={{ item }} state=present
+- name: Install the latest packages for Apache
+  dnf: name={{ item }} state=latest
   with_items:
-    - cgi
-    - rewrite
+    - httpd
+    # Dependencies for firewalld role
+    - firewalld
+    - python-firewall
+    - cockpit
   notify:
     - restart apache
+    - restart firewall
 
-# TODO: firewall?
+# https://fedoraproject.org/wiki/Apache_HTTP_Server#Opening_firewall_ports
+- name: Open firewall ports for the webserver
+  firewalld: service=http permanent=true state=enabled immediate=true
+
+# TODO: Configure the virtualhost https://www.digitalocean.com/community/tutorials/how-to-configure-apache-using-ansible-on-ubuntu-14-04
+# TODO: Configure SELinux http://www.serverlab.ca/tutorials/linux/web-servers-linux/configuring-selinux-policies-for-apache-web-servers/
