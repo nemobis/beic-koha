@@ -1,4 +1,6 @@
 ---
+- name: install the latest version of apache2
+  dnf: name=httpd state=latest
 
 - name: Enable required Apache modules
   apache2_module: name={{ item }} state=present
@@ -7,3 +9,5 @@
     - rewrite
   notify:
     - restart apache
+
+# TODO: firewall?

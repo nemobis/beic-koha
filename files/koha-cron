@@ -1,0 +1,22 @@
+# Not currently used. Copied from:
+# http://wiki.koha-community.org/wiki/Koha_3.10_on_Centos_6.3_x86_64_en#Cron_Settings
+
+SHELL=/bin/bash
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+MAILTO=root
+HOME=/
+
+PERL5LIB="/usr/share/koha/lib"
+KOHA_CONF="/etc/koha/koha-conf.xml"
+
+# ADVANCE NOTICES. Every day at 05:49 am.
+49 5 * * * root perl /usr/share/koha/bin/cronjobs/advance_notices.pl -c
+
+# OVERDUE NOTICES. Everyday at 05:45 am.
+45 5 * * * root perl /usr/share/koha/bin/cronjobs/overdue_notices.pl -t
+
+# SEND EMAILS. Everyday at 06:30 am.
+30 6 * * * root perl /usr/share/koha/bin/cronjobs/process_message_queue.pl
+
+# FINES. Everyday from 07:00 am to 23:00 pm
+0 7-23/2 * * * root perl /usr/share/koha/bin/cronjobs/fines.pl

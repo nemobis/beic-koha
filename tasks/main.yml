@@ -1,22 +1,53 @@
 ---
 
-#The following tasks are based on the instructions found at the following URLs:
-#1) http://wiki.koha-community.org/wiki/Koha_on_Debian
-#2) http://wiki.koha-community.org/wiki/Talk:Koha_on_Debian
+# The following tasks are based on the instructions found at the following URLs:
+# http://wiki.koha-community.org/wiki/Koha_3.10_on_Centos_6.3_x86_64_en
+# http://bugs.koha-community.org/bugzilla3/buglist.cgi?bug_id=12549,15405
 
-- name: Download apt repository signing key
-  apt_key: url=http://debian.koha-community.org/koha/gpg.asc state=present
+- name: Install main Koha prerequisites
+  dnf: name={{ item }} state=latest
+  with_items:
+    - yaz
+    - libidzebra
+    - libidzebra-modules
+    - libidzebra-devel
+    - idzebra
+    # TODO: Check what of the following is really required.
+    - gcc
+    - patch
+    - tcl
+    - libicu-devel
+    - make
+    - openssh-clients
+    - vim
+    - wget
+    - setools
+    - policycoreutils-python
+    - cyrus-sasl-plain
 
-- name: Add apt repository
-  copy: src=koha.list dest=/etc/apt/sources.list.d/koha.list
+# TODO: What to do with SELinux?
+
+- name: Install additional perl prerequisites
+  dnf: name={{item}} state=latest
+  with_items:
+    - GraphicsMagick-perl
+    - perl-CPAN
+    - perl-CPAN-Meta-YAML
+    - perl-DBD-SQLite2
+    - perl-MARC-Charset
+    - perl-Moose
+    - perl-Net-Server
+    - perl-Test-YAML-Valid
+    - perl-Time-Progress
+    - perl-UNIVERSAL-require
+    - perl-Unix-Syslog
+    - perl-YAML
 
 - name: Install Koha
   apt: name=koha-common update_cache=yes
 
 - name: Install MySQL Server locally
   include: mysql.yml
-  #FIXME: Control this task using a variable, as some might use
-  #remote MySQL servers
 
 - name: Configure Apache
   include: apache.yml
