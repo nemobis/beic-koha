@@ -30,8 +30,13 @@
 - name: Install additional perl prerequisites
   dnf: name={{item}} state=latest
   with_items:
+    - at # https://lists.katipo.co.nz/public/koha/2011-June/029684.html
+    - fribidi-devel # Configure failed for Text-Bidi-2.11. It seems that fribidi is missing.
+    - libyaz-devel # Required to build Net::Z3950::ZOOM from CPAN
+    - libuuid-devel # Configure failed for UUID-0.24. Can't link/include C library 'uuid', aborting.
     - GraphicsMagick-perl
     - perl-Algorithm-CheckDigits
+    - perl-App-cpanminus
     - perl-Authen-CAS-Client
     - perl-Biblio-EndnoteStyle
     - perl-CGI
@@ -89,11 +94,36 @@
     - perl-Unix-Syslog
     - perl-XML-Dumper
     - perl-XML-LibXML
+    # TODO: Warning: XML::LibXML compiled against libxml2 20903, but runtime libxml2 is older 20902
     - perl-XML-LibXSLT
     - perl-XML-RSS
     - perl-XML-SAX-Writer
     - perl-XML-Simple
     - perl-YAML
+
+- name: Install missing perl dependencies from CPAN
+  cpanm: name={{ item }}
+  with_items:
+    - CGI::Session::Serialize::yaml
+    - Crypt::Eksblowfish::Bcrypt
+    - GD::Barcode::UPCE
+    - HTML::FormatText
+    - Locale::Language
+    - MARC::Crosswalk::DublinCore
+    - MARC::File::XML
+    - Net::Z3950::ZOOM
+    - open # Module 'open' is not installed ! Bailing out the installation for Text-Bidi-2.11.
+    - OpenOffice::OODoc
+    - CHROMATIC/PDF-API2-Simple-1.1.5.tar.gz # https://rt.cpan.org/Public/Bug/Display.html?id=28125#txn-1303659
+    - PDF::Reuse::Barcode
+    - PDF::Table
+    - Schedule::At
+    - Template::Plugin::HtmlToText
+    - Template::Plugin::JSON::Escape
+    - Text::Bidi # TODO: Still fails
+    - Text::CSV::Encoded
+    - Text::Unaccent
+    - UUID
 
 # TODO: install Koha
 
