@@ -1,5 +1,5 @@
 ---
-- name: install the latest version of apache2
+- name: Install the latest version of apache2
   dnf: name=httpd state=latest
 
 - name: Enable required Apache modules

@@ -1,12 +1,12 @@
 ---
 # Cf. https://github.com/fabaff/fedora-ansible/blob/466e0cc42f44ad80b3d9356532501fd3bc282419/tasks/mariadb.yml
 
-- name: install the latest version of MySQL-python and prerequisites
+- name: Install the latest version of MySQL-python and prerequisites
   dnf: name={{ item }} state=latest
   with_items:
     - mariadb-server
     - MySQL-python
 
 # https://docs.ansible.com/ansible/mysql_db_module.html
-# Create a new database with name 'koha'
-- mysql_db: name=koha state=present
+- name: Create a new database with name 'koha'
+  mysql_db: name=koha state=present
