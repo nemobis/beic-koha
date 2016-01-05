@@ -25,8 +25,6 @@
     - policycoreutils-python
     - cyrus-sasl-plain
 
-# TODO: What to do with SELinux?
-
 - name: Install additional perl prerequisites
   dnf: name={{item}} state=latest
   with_items:
@@ -131,8 +129,9 @@
 - name: Configure Apache
   include: apache.yml
 
-# TODO: other firewall rules http://wiki.koha-community.org/wiki/Koha_3.10_on_Centos_6.3_x86_64_en#.C4.B0ptables_rules
+- name: Configure webserver for Koha
+  include: koha-webserver.yml
 
-- name: Install MySQL Server locally
+- name: Install MySQL server locally
   include: mysql.yml
 
