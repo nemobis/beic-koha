@@ -25,6 +25,8 @@
     - setools
     - policycoreutils-python
     - cyrus-sasl-plain
+  notify:
+    - restart memcached
 
 - name: Install additional perl prerequisites
   dnf: name={{item}} state=latest
