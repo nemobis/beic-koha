@@ -12,6 +12,7 @@
     - libidzebra-modules
     - libidzebra-devel
     - idzebra
+    - memcached
     # TODO: Check what of the following is really required.
     - gcc
     - patch
@@ -37,6 +38,7 @@
     - perl-App-cpanminus
     - perl-Authen-CAS-Client
     - perl-Biblio-EndnoteStyle
+    - perl-Cache-Memcached
     - perl-CGI
     - perl-CGI-Session
     - perl-CPAN
