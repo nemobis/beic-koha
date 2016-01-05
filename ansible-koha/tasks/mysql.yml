@@ -6,10 +6,14 @@
   with_items:
     - mariadb-server
     - MySQL-python
+  notify:
+    - restart mysql
 
-# https://docs.ansible.com/ansible/mysql_db_module.html
-- name: Create a new database with name 'koha'
-  mysql_db: name=koha state=present
+- name: Create a new database with name "koha"
+  mysql_db: name=koha login_user=root login_password="" state=present
+
+- name: Create a new database user with name "kohaadmin"
+  mysql_user: name=kohaadmin password=katikoan priv=koha.*:ALL,GRANT host=localhost state=present
 
 - name: Configure MySQL as required by Koha
   copy: src=../files/koha-my.cnf dest=/etc/my.cnf.d/koha-my.cnf
