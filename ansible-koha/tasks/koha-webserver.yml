@@ -15,9 +15,5 @@
 #- name: Add cronjobs for Koha
 #  copy: src=../files/koha-cron dest=/etc/cron.d/koha
 
-# Define ServerName in Apache configuration
-# TODO: other firewall rules http://wiki.koha-community.org/wiki/Koha_3.10_on_Centos_6.3_x86_64_en#.C4.B0ptables_rules
-# TODO: Configure the virtualhost https://www.digitalocean.com/community/tutorials/how-to-configure-apache-using-ansible-on-ubuntu-14-04
-# TODO: Configure SELinux http://www.serverlab.ca/tutorials/linux/web-servers-linux/configuring-selinux-policies-for-apache-web-servers/
-# TODO: Zebra user (kohauser/zebrastripes)?
-# TODO: PazPar2 server (localhost:11002) for Zebra server (localhost:11001)?
+# Defaults for firewall, SELinux, Zebra and PazPar2 seem to work.
+# TODO: Define ServerName in Apache configuration
