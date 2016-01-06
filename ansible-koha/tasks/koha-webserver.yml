@@ -5,6 +5,17 @@
 - name: Create a user for Koha
   user: name=koha comment="Koha server" group=apache
 
+- name: Make perl find the Koha modules
+  file: src=/usr/share/koha/lib/C4 dest=/usr/share/perl5/vendor_perl/C4 state=link
+  file: src=/usr/share/koha/lib/Koha dest=/usr/share/perl5/vendor_perl/Koha state=link
+  file: src=/usr/share/koha/lib/OpenILS dest=/usr/share/perl5/vendor_perl/OpenILS state=link
+  file: src=/usr/share/koha/lib/Koha.pm dest=/usr/share/perl5/vendor_perl/Koha.pm state=link
+  notify: restart apache
+
+#- name: Add cronjobs for Koha
+#  copy: src=../files/koha-cron dest=/etc/cron.d/koha
+
+# Define ServerName in Apache configuration
 # TODO: other firewall rules http://wiki.koha-community.org/wiki/Koha_3.10_on_Centos_6.3_x86_64_en#.C4.B0ptables_rules
 # TODO: Configure the virtualhost https://www.digitalocean.com/community/tutorials/how-to-configure-apache-using-ansible-on-ubuntu-14-04
 # TODO: Configure SELinux http://www.serverlab.ca/tutorials/linux/web-servers-linux/configuring-selinux-policies-for-apache-web-servers/
