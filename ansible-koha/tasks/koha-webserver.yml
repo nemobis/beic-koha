@@ -6,10 +6,10 @@
   user: name=koha comment="Koha server" group=apache
 
 - name: Make perl find the Koha modules
-  file: src=/usr/share/koha/lib/C4 dest=/usr/share/perl5/vendor_perl/C4 state=link
-  file: src=/usr/share/koha/lib/Koha dest=/usr/share/perl5/vendor_perl/Koha state=link
-  file: src=/usr/share/koha/lib/OpenILS dest=/usr/share/perl5/vendor_perl/OpenILS state=link
-  file: src=/usr/share/koha/lib/Koha.pm dest=/usr/share/perl5/vendor_perl/Koha.pm state=link
+  file: src=/usr/share/koha/lib/C4 dest=/usr/share/perl5/vendor_perl/C4 state=link force=yes
+  file: src=/usr/share/koha/lib/Koha dest=/usr/share/perl5/vendor_perl/Koha state=link force=yes
+  file: src=/usr/share/koha/lib/OpenILS dest=/usr/share/perl5/vendor_perl/OpenILS state=link force=yes
+  file: src=/usr/share/koha/lib/Koha.pm dest=/usr/share/perl5/vendor_perl/Koha.pm state=link force=yes
   notify: restart apache
 
 #- name: Add cronjobs for Koha
