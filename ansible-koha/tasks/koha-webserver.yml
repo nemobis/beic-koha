@@ -12,11 +12,6 @@
     - Koha
     - OpenILS
     - Koha.pm
-  args:
-    creates: /usr/share/perl5/vendor_perl/C4
-    creates: /usr/share/perl5/vendor_perl/Koha
-    creates: /usr/share/perl5/vendor_perl/OpenILS
-    creates: /usr/share/perl5/vendor_perl/Koha.pm
   notify: restart apache
 
 #- name: Add cronjobs for Koha

@@ -9,6 +9,9 @@
   notify:
     - restart mysql
 
+- name: Start MySQL daemon
+  shell: service mariadb restart
+
 - name: Create a new database with name "koha"
   mysql_db: name=koha login_user=root login_password="" state=present
 

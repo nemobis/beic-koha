@@ -11,6 +11,12 @@
     - restart apache
     - restart firewall
 
+- name: Start Apache and Firewalld
+  shell: service {{ item }} restart
+  with_items:
+  - httpd
+  - firewalld
+
 # https://fedoraproject.org/wiki/Apache_HTTP_Server#Opening_firewall_ports
 - name: Open firewall ports for the webserver
   firewalld: service=http permanent=true state=enabled immediate=true

@@ -1,17 +1,13 @@
 ---
 
 - name: restart apache
-  shell: service httpd restart
-  #service: name=httpd state=restarted enabled=yes
+  service: name=httpd state=restarted enabled=yes
 
 - name: restart firewall
-  shell: service firewalld restart
-  #service: name=firewalld state=restarted enabled=yes
+  service: name=firewalld state=restarted enabled=yes
 
 - name: restart memcached
-  shell: service memcached restart
-  #service: name=memcached state=restarted enabled=yes
+  service: name=memcached state=restarted enabled=yes
 
 - name: restart mysql
-  shell: service mariadb restart
-  #service: name=mariadb state=restarted enabled=yes
+  service: name=mariadb state=restarted enabled=yes
