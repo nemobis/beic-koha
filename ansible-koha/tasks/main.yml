@@ -11,9 +11,6 @@
 - name: Configure Apache
   include: apache.yml
 
-- name: Configure webserver for Koha
-  include: koha-webserver.yml
-
 - name: Install MySQL server locally
   include: mysql.yml
 
@@ -30,10 +27,13 @@
 
   # Cf. https://github.com/colinsc/koha/blob/master/debian/rules#L6
 - name: Run Koha installation with default options
-  shell: perl koha*/Makefile.PL PERL_MM_USE_DEFAULT=1
+  shell: cd koha*; PERL_MM_USE_DEFAULT=1 perl Makefile.PL; make; make install
   args:
     chdir: /tmp
     creates: /usr/share/koha
+
+- name: Configure webserver for Koha
+  include: koha-webserver.yml
 
 # TODO: Make language configurable
 # TODO: Should this be owned by root?
