@@ -31,6 +31,7 @@
   args:
     chdir: /tmp
     creates: /usr/share/koha
+  ignore_errors: yes
 
 - name: Configure webserver for Koha
   include: koha-webserver.yml
