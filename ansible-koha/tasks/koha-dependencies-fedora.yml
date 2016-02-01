@@ -101,11 +101,13 @@
     - perl-XML-SAX-Writer
     - perl-XML-Simple
     - perl-YAML
+    - https://www.mirrorservice.org/sites/dl.fedoraproject.org/pub/fedora/linux/development/rawhide/x86_64/os/Packages/p/perl-Crypt-GCrypt-1.26-1.fc24.x86_64.rpm
 
 - name: Install missing perl dependencies from CPAN
   cpanm: name={{ item }}
   with_items:
     - CGI::Session::Serialize::yaml
+    - Convert::BaseN
     - Crypt::Eksblowfish::Bcrypt
     - GD::Barcode::UPCE
     - HTML::FormatText
@@ -120,6 +122,7 @@
     - PDF::Reuse::Barcode
     - PDF::Table
     - Schedule::At
+    - SOAP::Lite
     - Template::Plugin::HtmlToText
     - Template::Plugin::JSON::Escape
     # - Text::Bidi # Fails: https://paste.debian.net/361292/
