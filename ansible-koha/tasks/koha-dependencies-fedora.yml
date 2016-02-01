@@ -58,6 +58,7 @@
     - perl-Email-Valid
     - perl-Exception-Class
     - perl-Font-TTF
+    - perl-GD
     - perl-HTML-Scrubber
     - perl-HTTP-OAI
     - perl-JSON
