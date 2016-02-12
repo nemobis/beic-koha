@@ -60,6 +60,7 @@
     - perl-Font-TTF
     - perl-GD
     - perl-HTML-Scrubber
+    - perl-HTTP-Daemon # Required to compile SOAP::Lite
     - perl-HTTP-OAI
     - perl-JSON
     - perl-Library-CallNumber-LC
@@ -84,7 +85,7 @@
     - perl-Test-MockModule
     - perl-Test-YAML-Valid
     # Text::Bidi Available in fedora 24 repos, download directly
-    - https://www.mirrorservice.org/sites/dl.fedoraproject.org/pub/fedora/linux/development/rawhide/x86_64/os/Packages/p/perl-Text-Bidi-2.11-1.fc24.x86_64.rpm
+    - https://www.mirrorservice.org/sites/dl.fedoraproject.org/pub/fedora/linux/development/rawhide/x86_64/os/Packages/p/perl-Text-Bidi-2.11-2.fc24.x86_64.rpm
     - perl-Text-CSV
     - perl-Text-CSV_XS
     - perl-Text-Iconv
@@ -101,7 +102,7 @@
     - perl-XML-SAX-Writer
     - perl-XML-Simple
     - perl-YAML
-    - https://www.mirrorservice.org/sites/dl.fedoraproject.org/pub/fedora/linux/development/rawhide/x86_64/os/Packages/p/perl-Crypt-GCrypt-1.26-1.fc24.x86_64.rpm
+    - https://www.mirrorservice.org/sites/dl.fedoraproject.org/pub/fedora/linux/development/rawhide/x86_64/os/Packages/p/perl-Crypt-GCrypt-1.26-2.fc24.x86_64.rpm
 
 - name: Install missing perl dependencies from CPAN
   cpanm: name={{ item }}
