@@ -24,6 +24,7 @@
   command: tar xaf koha-latest.tar.gz
   args:
     chdir: /tmp
+    creates: /usr/share/koha
 
   # Cf. https://github.com/colinsc/koha/blob/master/debian/rules#L6
 - name: Run Koha installation with default options

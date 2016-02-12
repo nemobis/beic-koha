@@ -24,6 +24,21 @@
     - zebrasrv
   notify: restart zebraidx
 
+# Credits: http://jensd.be/587/linux/tips-tricks-for-ansible
+- name: SELinux, check loaded modules
+  shell: semodule -l
+  register: selinuxmodules
+  always_run: yes
+  changed_when: False
+
+- name: SELinux, copy module to allow zebradb socket access
+  action: copy src=../files/zebra_custom.pp dest=/tmp/zebra_custom.pp owner=root mode=600
+  when: "selinuxmodules.stdout.find('zebra_custom') == -1"
+
+- name: SELinux, install module to allow zebradb socket access
+  command: semodule -i /tmp/zebra_custom.pp
+  when: "selinuxmodules.stdout.find('zebra_custom') == -1"
+
 #- name: Add cronjobs for Koha
 #  copy: src=../files/koha-cron dest=/etc/cron.d/koha
 
