@@ -1,0 +1,10 @@
+[Unit]
+Description=Zebra daemon for Koha
+
+[Service]
+Type=simple
+User=koha
+ExecStart=/usr/share/koha/bin/migration_tools/rebuild_zebra.pl -daemon -z -a -b -x
+
+[Install]
+WantedBy=multi-user.target

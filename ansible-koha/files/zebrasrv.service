@@ -1,0 +1,9 @@
+[Unit]
+Description=Zebra server
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/zebrasrv -D -T -p /var/run/zebrasrv.pid -f /etc/koha/koha-conf.xml -l /var/log/koha/zebrasrv.log
+
+[Install]
+WantedBy=multi-user.target
