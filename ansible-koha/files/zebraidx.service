@@ -5,7 +5,7 @@ Description=Zebra daemon for Koha
 Type=simple
 User=koha
 PermissionsStartOnly=true
-ExecStartPre=/usr/bin/chmod -R 777 /var/lock/koha/zebradb/ /var/run/koha/zebradb/ /var/lib/koha/zebradb/
+ExecStartPre=/usr/share/koha/bin/zebra-init.sh && /usr/bin/chmod -R 777 /var/lock/koha/zebradb/ /var/run/koha/zebradb/ /var/lib/koha/zebradb/
 ExecStart=/usr/share/koha/bin/migration_tools/rebuild_zebra.pl -daemon -z -a -b -x
 
 [Install]
