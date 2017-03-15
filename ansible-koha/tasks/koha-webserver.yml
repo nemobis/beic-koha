@@ -16,6 +16,7 @@
 
 - name: Make Koha find the 64 bit Zebra module
   file: src=/usr/lib64/idzebra-2.0 dest=/usr/lib/idzebra-2.0 state=link force=yes
+  when: ansible_userspace_bits == 64
 
 - name: Configure services to run Zebra
   copy: src=../files/{{ item }}.service dest=/etc/systemd/system/{{ item }}.service
