@@ -3,7 +3,7 @@
   copy: src=../files/koha-httpd.conf dest=/etc/httpd/conf.d/koha.conf
 
 - name: Create a user for Koha
-  user: name=koha comment="Koha server" group=apache
+  user: name=koha comment="Koha server" group=apache system=true
 
 - name: Make perl find the Koha modules
   file: src=/usr/share/koha/lib/{{ item }} dest=/usr/share/perl5/vendor_perl/{{ item }} state=link force=yes
