@@ -51,8 +51,9 @@
     chdir: /usr/share/koha/bin/migration_tools/
     creates: /tmp/zebra_koha/rebuild/rebuild..LCK
 
-- name: Enable required services
-  command: systemctl enable {{item}}
+- service:
+    name: "{{ item }}"
+    enabled: yes
   when: start_at_boot == "y" or start_at_boot == 'Y' or start_at_boot == 'Yes' or start_at_boot == 'YES' or start_at_boot == 'yes'
   with_items:
     - mariadb
