@@ -35,6 +35,9 @@
     - perl-App-cpanminus
     - perl-Authen-CAS-Client
     - perl-Biblio-EndnoteStyle
+    - perl-Business-ISBN
+    - perl-Business-ISSN
+    - perl-Bytes-Random-Secure
     - perl-Cache-Memcached
     - perl-CGI
     - perl-CGI-Session
@@ -53,6 +56,7 @@
     - perl-DateTime-Format-MySQL
     - perl-DateTime-Set
     - perl-DateTime-TimeZone
+    - perl-DBIx-RunSQL
     - perl-Email-Date
     - perl-Email-Valid
     - perl-Exception-Class
@@ -77,9 +81,12 @@
     - perl-Moose
     - perl-Net-Server
     - perl-Number-Format
+    - perl-Path-Tiny
     - perl-PDF-API2
     - perl-PDF-Reuse
     - perl-Plack-Middleware-ReverseProxy
+    - perl-Sereal-Encoder
+    - perl-Sereal-Decoder
     - perl-SOAP-Lite
     - perl-String-Random
     - perl-Test-MockModule
@@ -127,3 +134,4 @@
     - Text::CSV::Encoded
     - Text::Unaccent
     - UUID
+    - WWW::CSRF
