@@ -80,6 +80,7 @@
     - perl-PDF-API2
     - perl-PDF-Reuse
     - perl-Plack-Middleware-ReverseProxy
+    - perl-SOAP-Lite
     - perl-String-Random
     - perl-Test-MockModule
     - perl-Test-YAML-Valid
@@ -114,14 +115,12 @@
     - MARC::Crosswalk::DublinCore
     - MARC::File::XML
     - Net::Z3950::ZOOM
-    - open # Module 'open' is not installed ! Bailing out the installation for Text-Bidi-2.11.
     - OpenOffice::OODoc
     # TODO: duplicates the package above?
     - CHROMATIC/PDF-API2-Simple-1.1.5.tar.gz # https://rt.cpan.org/Public/Bug/Display.html?id=28125#txn-1303659
     - PDF::Reuse::Barcode
     - PDF::Table
     - Schedule::At
-    - SOAP::Lite
     - Template::Plugin::HtmlToText
     - Template::Plugin::JSON::Escape
     # - Text::Bidi # Fails: https://paste.debian.net/361292/
