@@ -39,9 +39,11 @@
 - name: SELinux, install module to allow zebradb socket access
   command: semodule -i /tmp/zebra_custom.pp
   when: "selinuxmodules.stdout.find('zebra_custom') == -1"
-  
-- name: SELinux, allow koha to search in external databases
-  command: setsebool -P httpd_can_network_connect 1
+
+- seboolean:
+    name: httpd_can_network_connect
+    state: yes
+    persistent: yes
 
 #- name: Add cronjobs for Koha
 #  copy: src=../files/koha-cron dest=/etc/cron.d/koha
