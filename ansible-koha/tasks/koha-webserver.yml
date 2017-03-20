@@ -16,7 +16,7 @@
 
 - name: Make Koha find the 64 bit Zebra module
   file: src=/usr/lib64/idzebra-2.0 dest=/usr/lib/idzebra-2.0 state=link force=yes
-  when: ansible_userspace_bits == 64
+  when: ansible_userspace_bits == '64'
 
 - name: Create init script for zebra lock and run directories
   copy: src=../files/zebra-init.sh dest=/usr/share/koha/bin/zebra-init.sh mode=u+rx
