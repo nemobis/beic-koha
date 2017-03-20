@@ -1,5 +1,7 @@
 [Unit]
 Description=Zebra daemon for Koha
+Requires=mariadb.service
+After=mariadb.service
 
 [Service]
 Type=simple
