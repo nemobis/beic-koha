@@ -1,5 +1,7 @@
 [Unit]
 Description=Zebra server
+Requires=zebraidx.service
+After=zebraidx.service
 
 [Service]
 Type=forking
