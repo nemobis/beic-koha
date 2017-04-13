@@ -38,11 +38,6 @@
   always_run: yes
   changed_when: False
 
-# Todo: check whatever zebra_custom is effective
-- name: SELinux, copy module to allow zebradb socket access
-  action: copy src=../files/zebra_custom.pp dest=/tmp/zebra_custom.pp owner=root mode=600
-  when: "selinuxmodules.stdout.find('zebra_custom') == -1"
-
 - name: SELinux, install module to allow zebradb socket access
   command: semodule -i /tmp/zebra_custom.pp
   when: "selinuxmodules.stdout.find('zebra_custom') == -1"
