@@ -26,10 +26,10 @@
 
 - name: Configure services to run Zebra
   copy: src=../files/{{ item }}.service dest=/etc/systemd/system/{{ item }}.service
+  notify: restart {{ item }}
   with_items:
     - zebraidx
     - zebrasrv
-  notify: restart zebraidx
 
 # Credits: http://jensd.be/587/linux/tips-tricks-for-ansible
 - name: SELinux, check loaded modules
