@@ -5,6 +5,7 @@ After=zebraidx.service
 
 [Service]
 Type=forking
+ExecStartPost=/usr/bin/chmod -R 777 /var/lock/koha/zebradb/ /var/run/koha/zebradb/ /var/lib/koha/zebradb/
 ExecStart=/usr/bin/zebrasrv -D -T -p /var/run/zebrasrv.pid -f /etc/koha/koha-conf.xml -l /var/log/koha/zebrasrv.log
 
 [Install]
