@@ -60,6 +60,7 @@
     - perl-Email-Date
     - perl-Email-Valid
     - perl-Exception-Class
+    - perl-File-Slurp
     - perl-Font-TTF
     - perl-GD
     - perl-HTML-Scrubber
