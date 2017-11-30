@@ -35,12 +35,8 @@
 - name: SELinux, check loaded modules
   shell: semodule -l
   register: selinuxmodules
-  always_run: yes
+  check_mode: no
   changed_when: False
-
-- name: SELinux, install module to allow zebradb socket access
-  command: semodule -i /tmp/zebra_custom.pp
-  when: "selinuxmodules.stdout.find('zebra_custom') == -1"
 
 - name: SELinux, copy module to allow zebradb socket access
   action: copy src=../files/zebra_search.pp dest=/tmp/zebra_search.pp owner=root mode=600

@@ -10,6 +10,7 @@
     - memcached
     # TODO: Check what of the following is really required.
     - gcc
+    - gettext
     - patch
     - tcl
     - libicu-devel
@@ -29,6 +30,7 @@
     - fribidi-devel # Configure failed for Text-Bidi-2.11. It seems that fribidi is missing.
     - libyaz-devel # Required to build Net::Z3950::ZOOM from CPAN
     - libuuid-devel # Configure failed for UUID-0.24. Can't link/include C library 'uuid', aborting.
+    - perl-experimental
     - perl-open # Bailing out the installation for Text-Bidi-2.11. Module 'open' is not installed
     - GraphicsMagick-perl
     - perl-Algorithm-CheckDigits
@@ -91,6 +93,7 @@
     - perl-SOAP-Lite
     - perl-String-Random
     - perl-Test-MockModule
+    - perl-Test-Mojo
     - perl-Test-YAML-Valid
     - perl-Text-Bidi
     - perl-Text-CSV
@@ -136,3 +139,7 @@
     - Text::Unaccent
     - UUID
     - WWW::CSRF
+    - Mojolicious::Plugin::OpenAPI
+
+- name: Install Swagger2 and its undeclared dependencies for Koha up to 17.05
+  command: cpanm -n Mojolicious::Plugin::Swagger2
