@@ -65,7 +65,7 @@
 - service:
     name: "{{ item }}"
     enabled: yes
-  when: start_at_boot == "y" or start_at_boot == 'Y' or start_at_boot == 'Yes' or start_at_boot == 'YES' or start_at_boot == 'yes'
+  when: start_at_boot == true
   with_items:
     - mariadb
     - zebraidx

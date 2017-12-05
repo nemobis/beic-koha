@@ -3,10 +3,5 @@
   gather_facts: yes
   remote_user: root
   #sudo: true
-  vars_prompt:
-    - name: "start_at_boot"
-      prompt: "Should Koha start at boot (Yes/No)?"
-      default: N
-      private: false
   roles:
     - { role: ansible-koha, when: "ansible_os_family == 'RedHat'" }
