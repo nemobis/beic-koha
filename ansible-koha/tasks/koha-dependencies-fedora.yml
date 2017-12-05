@@ -10,12 +10,12 @@
     - memcached
     # TODO: Check what of the following is really required.
     - gcc
+    - gettext
     - patch
     - tcl
     - libicu-devel
     - make
     - openssh-clients
-    - vim
     - wget
     - setools
     - policycoreutils-python
@@ -30,12 +30,16 @@
     - fribidi-devel # Configure failed for Text-Bidi-2.11. It seems that fribidi is missing.
     - libyaz-devel # Required to build Net::Z3950::ZOOM from CPAN
     - libuuid-devel # Configure failed for UUID-0.24. Can't link/include C library 'uuid', aborting.
+    - perl-experimental
     - perl-open # Bailing out the installation for Text-Bidi-2.11. Module 'open' is not installed
     - GraphicsMagick-perl
     - perl-Algorithm-CheckDigits
     - perl-App-cpanminus
     - perl-Authen-CAS-Client
     - perl-Biblio-EndnoteStyle
+    - perl-Business-ISBN
+    - perl-Business-ISSN
+    - perl-Bytes-Random-Secure
     - perl-Cache-Memcached
     - perl-CGI
     - perl-CGI-Session
@@ -47,16 +51,17 @@
     - perl-DBIx-Class-Schema-Loader
     - perl-Data-ICal
     - perl-Date-Calc
-    - perl-Date-Manip
     - perl-DateTime
     - perl-DateTime-Event-ICal
     - perl-DateTime-Format-ICal
     - perl-DateTime-Format-MySQL
     - perl-DateTime-Set
     - perl-DateTime-TimeZone
+    - perl-DBIx-RunSQL
     - perl-Email-Date
     - perl-Email-Valid
     - perl-Exception-Class
+    - perl-File-Slurp
     - perl-Font-TTF
     - perl-GD
     - perl-HTML-Scrubber
@@ -78,14 +83,18 @@
     - perl-Moose
     - perl-Net-Server
     - perl-Number-Format
+    - perl-Path-Tiny
     - perl-PDF-API2
     - perl-PDF-Reuse
     - perl-Plack-Middleware-ReverseProxy
+    - perl-Sereal-Encoder
+    - perl-Sereal-Decoder
+    - perl-SOAP-Lite
     - perl-String-Random
     - perl-Test-MockModule
+    - perl-Test-Mojo
     - perl-Test-YAML-Valid
-    # Text::Bidi Available in fedora 24 repos, download directly
-    - https://www.mirrorservice.org/sites/dl.fedoraproject.org/pub/fedora/linux/development/rawhide/x86_64/os/Packages/p/perl-Text-Bidi-2.11-2.fc24.x86_64.rpm
+    - perl-Text-Bidi
     - perl-Text-CSV
     - perl-Text-CSV_XS
     - perl-Text-Iconv
@@ -102,7 +111,7 @@
     - perl-XML-SAX-Writer
     - perl-XML-Simple
     - perl-YAML
-    - https://www.mirrorservice.org/sites/dl.fedoraproject.org/pub/fedora/linux/development/rawhide/x86_64/os/Packages/p/perl-Crypt-GCrypt-1.26-2.fc24.x86_64.rpm
+    - perl-Crypt-GCrypt
 
 - name: Install missing perl dependencies from CPAN
   cpanm: name={{ item }}
@@ -110,23 +119,27 @@
     - CGI::Session::Serialize::yaml
     - Convert::BaseN
     - Crypt::Eksblowfish::Bcrypt
+    - Date::Manip
     - GD::Barcode::UPCE
     - HTML::FormatText
     - Locale::Language
     - MARC::Crosswalk::DublinCore
     - MARC::File::XML
     - Net::Z3950::ZOOM
-    - open # Module 'open' is not installed ! Bailing out the installation for Text-Bidi-2.11.
     - OpenOffice::OODoc
     # TODO: duplicates the package above?
     - CHROMATIC/PDF-API2-Simple-1.1.5.tar.gz # https://rt.cpan.org/Public/Bug/Display.html?id=28125#txn-1303659
     - PDF::Reuse::Barcode
     - PDF::Table
     - Schedule::At
-    - SOAP::Lite
     - Template::Plugin::HtmlToText
     - Template::Plugin::JSON::Escape
     # - Text::Bidi # Fails: https://paste.debian.net/361292/
     - Text::CSV::Encoded
     - Text::Unaccent
     - UUID
+    - WWW::CSRF
+    - Mojolicious::Plugin::OpenAPI
+
+- name: Install Swagger2 and its undeclared dependencies for Koha up to 17.05
+  command: cpanm -n Mojolicious::Plugin::Swagger2

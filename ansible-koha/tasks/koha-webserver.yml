@@ -2,8 +2,11 @@
 - name: Configure Apache as required by Koha
   copy: src=../files/koha-httpd.conf dest=/etc/httpd/conf.d/koha.conf
 
+- name: Create a group for Koha
+  group: name=koha system=true
+
 - name: Create a user for Koha
-  user: name=koha comment="Koha server" group=apache
+  user: name=koha comment="Koha server" group=koha groups=apache system=true
 
 - name: Make perl find the Koha modules
   file: src=/usr/share/koha/lib/{{ item }} dest=/usr/share/perl5/vendor_perl/{{ item }} state=link force=yes
@@ -16,28 +19,37 @@
 
 - name: Make Koha find the 64 bit Zebra module
   file: src=/usr/lib64/idzebra-2.0 dest=/usr/lib/idzebra-2.0 state=link force=yes
+  when: ansible_userspace_bits == '64'
+
+- name: Create init script for zebra lock and run directories
+  copy: src=../files/zebra-init.sh dest=/usr/share/koha/bin/zebra-init.sh mode=u+rx
 
 - name: Configure services to run Zebra
   copy: src=../files/{{ item }}.service dest=/etc/systemd/system/{{ item }}.service
+  notify: restart {{ item }}
   with_items:
     - zebraidx
     - zebrasrv
-  notify: restart zebraidx
 
 # Credits: http://jensd.be/587/linux/tips-tricks-for-ansible
 - name: SELinux, check loaded modules
   shell: semodule -l
   register: selinuxmodules
-  always_run: yes
+  check_mode: no
   changed_when: False
 
 - name: SELinux, copy module to allow zebradb socket access
-  action: copy src=../files/zebra_custom.pp dest=/tmp/zebra_custom.pp owner=root mode=600
-  when: "selinuxmodules.stdout.find('zebra_custom') == -1"
+  action: copy src=../files/zebra_search.pp dest=/tmp/zebra_search.pp owner=root mode=600
+  when: "selinuxmodules.stdout.find('zebra_search') == -1"
 
 - name: SELinux, install module to allow zebradb socket access
-  command: semodule -i /tmp/zebra_custom.pp
-  when: "selinuxmodules.stdout.find('zebra_custom') == -1"
+  command: semodule -i /tmp/zebra_search.pp
+  when: "selinuxmodules.stdout.find('zebra_search') == -1"
+
+- seboolean:
+    name: httpd_can_network_connect
+    state: yes
+    persistent: yes
 
 #- name: Add cronjobs for Koha
 #  copy: src=../files/koha-cron dest=/etc/cron.d/koha
