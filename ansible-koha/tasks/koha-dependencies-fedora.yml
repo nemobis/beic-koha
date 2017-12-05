@@ -51,7 +51,6 @@
     - perl-DBIx-Class-Schema-Loader
     - perl-Data-ICal
     - perl-Date-Calc
-    - perl-Date-Manip
     - perl-DateTime
     - perl-DateTime-Event-ICal
     - perl-DateTime-Format-ICal
@@ -120,6 +119,7 @@
     - CGI::Session::Serialize::yaml
     - Convert::BaseN
     - Crypt::Eksblowfish::Bcrypt
+    - Date::Manip
     - GD::Barcode::UPCE
     - HTML::FormatText
     - Locale::Language

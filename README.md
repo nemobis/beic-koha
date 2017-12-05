@@ -24,6 +24,13 @@ The recipe has tested on Fedora 25 but not fully on CentOS 7, which requires [EP
   * for local installation: `ansible-playbook koha.yml -u root -i inventory.ini --connection local`
 * Complete the online install.
 
+# Migrations
+
+If you're migrating from another Koha installation, you probably want to check the [data migration section](https://koha-community.org/manual/17.05/html/15_implementation_checklist.html#data-migration) of the Koha manual implementation checklist, or some information on the [koha migration process](http://opensource-ils.cci.utk.edu/content/koha-migration-process). In particular, after the installer you may want to visit:
+
+* `tools/stage-marc-import.pl` and `tools/manage-marc-import.pl` to import your catalog;
+* `admin/biblio_framework.pl` to import your [MARC bibliographic frameworks](https://koha-community.org/manual/17.05/html/02_administration.html#marc-bibliographic-frameworks-label).
+
 # More information
 
 http://wiki.koha-community.org/wiki/Koha_3.22_on_Fedora_23

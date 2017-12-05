@@ -15,10 +15,9 @@
   include: mysql.yml
 
 - name: Download latest Koha
-  command: wget http://download.koha-community.org/koha-latest.tar.gz
-  args:
-    chdir: /tmp
-    creates: /tmp/koha-latest.tar.gz
+  get_url:
+    url: http://download.koha-community.org/koha-latest.tar.gz
+    dest: /tmp/koha-latest.tar.gz
 
 - name: Unpack Koha tarball
   command: tar xaf koha-latest.tar.gz
@@ -45,11 +44,23 @@
     chdir: /usr/share/koha/misc/translator/
     creates: /usr/share/koha/intranet/htdocs/intranet-tmpl/prog/it-IT
 
+# Make the koha user own Zebra indices and dirs
+# Otherwise the zebraidx and zebrasrv services fail to start
+- file:
+    dest: "{{ item }}"
+    state: directory
+    owner: koha
+    recurse: yes
+  with_items:
+    - /var/lib/koha/zebradb/
+    - /var/lock/koha/zebradb/
+    - /var/run/koha/zebradb/
+
 - name: Build Zebra indices
   command: sudo -u koha ./rebuild_zebra.pl -b -a -r -v
   args:
     chdir: /usr/share/koha/bin/migration_tools/
-    creates: /tmp/zebra_koha/rebuild/rebuild..LCK
+    creates: /var/lock/koha/zebradb/rebuild/rebuild..LCK
 
 - service:
     name: "{{ item }}"
