@@ -27,7 +27,7 @@
 
   # Cf. https://github.com/colinsc/koha/blob/master/debian/rules#L6
 - name: Run Koha installation with default options
-  shell: cd koha*; PERL_MM_USE_DEFAULT=1 perl Makefile.PL; make; make install
+  shell: cd koha*/ ; PERL_MM_USE_DEFAULT=1 perl Makefile.PL ; make ; make install
   args:
     chdir: /tmp
     creates: /usr/share/koha
